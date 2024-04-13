@@ -31,7 +31,7 @@ app.post("/print", (req, res) => {
       doc.moveDown();
       doc.fontSize(16).text(roleNames[role], { bold: true });
       doc.moveDown(0.1);
-      doc.fontSize(12).text(content);
+      doc.fontSize(12).text(content.trim());
     }
   }
 
