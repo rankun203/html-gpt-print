@@ -27,6 +27,7 @@ app.post("/print", (req, res) => {
   // Add text from JSON body to PDF
   const { messages } = req.body;
   for (const { role, content } of messages) {
+    if (role === "system") continue;
     if (content) {
       doc.moveDown();
       doc.fontSize(16).text(roleNames[role], { bold: true });
