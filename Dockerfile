@@ -1,7 +1,6 @@
 from node:lts-slim
 
 WORKDIR /app
-ADD package.json pnpm-lock.yaml /app/
 
 RUN apt-get update && apt-get install curl gnupg -y \
   && curl --location --silent https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -10,7 +9,12 @@ RUN apt-get update && apt-get install curl gnupg -y \
   && apt-get install google-chrome-stable -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
+# create a new user and add to sudo group
+RUN useradd -m app && adduser app sudo
+USER app
+
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+ADD package.json pnpm-lock.yaml /app/
 RUN npm i -g pnpm && pnpm install
 
 ADD . /app
@@ -18,4 +22,3 @@ ADD . /app
 EXPOSE 3000
 
 CMD ["pnpm", "start"]
-
