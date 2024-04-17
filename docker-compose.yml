@@ -12,3 +12,13 @@ services:
       - public
       - default
     restart: unless-stopped
+# docker-compose.override.yml
+# version: "3.8"
+# services:
+#   app:
+#     labels:
+#       - "traefik.enable=true"
+#       - 'traefik.backend=html-gpt-print'
+#       - "traefik.port=3000"
+#       - "traefik.frontend.rule=Host:html-gpt-print.deg.mindfine.com"
+
