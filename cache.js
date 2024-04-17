@@ -10,7 +10,7 @@ function setData(data) {
 
 function getData(id) {
   const data = CACHE[id];
-  // delete CACHE[id];
+  delete CACHE[id];
   return data;
 }
 
