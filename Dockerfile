@@ -1,4 +1,4 @@
-from node:lts-alpine
+from node:lts-slim
 
 WORKDIR /app
 ADD package.json pnpm-lock.yaml /app/
