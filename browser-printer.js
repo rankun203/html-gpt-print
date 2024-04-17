@@ -5,7 +5,10 @@ const port = process.env.PORT || 3000;
 
 let browser;
 (async () => {
-  browser = await puppeteer.launch();
+  browser = await puppeteer.launch({
+    executablePath: "/usr/bin/google-chrome",
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   console.log("Browser launched");
 })();
 
