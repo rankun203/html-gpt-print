@@ -12,8 +12,3 @@ services:
       - public
       - default
     restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - 'traefik.http.routers.html-gpt-print.rule=Host("html-gpt-print.deg.mindfine.com")'
-      - "traefik.http.services.html-gpt-print.loadbalancer.server.port=3000"
-      - "traefik.http.routers.html-gpt-print.tls.certresolver=myresolver"
