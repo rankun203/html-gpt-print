@@ -24,35 +24,15 @@ app.get("/get/:id", async (req, res) => {
   res.send(data);
 });
 
+app.get("/hc", (req, res) => {
+  res.send("OK");
+});
+
 app.post("/print", async (req, res) => {
   const pdfResult = await printViaBrowser(req.body);
   res.contentType("application/pdf");
   res.send(pdfResult.buf); // Send the PDF file in the response
   await pdfResult.cleanup(); // Cleanup the page after sending the response
-
-  // const doc = new PDFDocument();
-  // doc.fontSize(32).text("HTML GPT");
-
-  // // Setting response headers to display PDF inline
-  // res.setHeader("Content-Type", "application/pdf");
-  // res.setHeader("Content-Disposition", 'inline; filename="conversation.pdf"');
-
-  // // Pipe generated PDF into response
-  // doc.pipe(res);
-
-  // // Add text from JSON body to PDF
-  // for (const { role, content } of messages) {
-  //   if (role === "system") continue;
-  //   if (content) {
-  //     doc.moveDown();
-  //     doc.fontSize(16).text(roleNames[role], { bold: true });
-  //     doc.moveDown(0.1);
-  //     doc.fontSize(12).text(content.trim());
-  //   }
-  // }
-
-  // // Finalize the PDF and end the document
-  // doc.end();
 });
 
 app.listen(port, () => {
