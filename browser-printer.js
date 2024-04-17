@@ -43,7 +43,10 @@ async function printViaBrowser(dataObj) {
 
     page = await browser.newPage();
     await page.goto(url, { waitUntil: "networkidle0" });
-    pdfBuffer = await page.pdf({ format: "A4" });
+    pdfBuffer = await page.pdf({
+      format: "A4",
+      margin: { top: 1, right: 1, bottom: 1, left: 1 },
+    });
   } catch (e) {
     console.error(e);
     await page.close();
